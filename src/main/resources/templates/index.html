@@ -30,6 +30,7 @@
 								<th>Fecha Nacimiento</th>
 								<th>Email</th>
 								<th></th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -39,7 +40,8 @@
 								<td th:text="${persona.username}"></td>
 								<td th:text="${persona.fecha_nac}"></td>
 								<td th:text="${persona.email}"></td>
-								<td><a th:href="@{/editar} + ${persona.idPersona}" class="btn btn-warning">Editar</a></td>
+								<td><a th:href="@{/editar/} + ${persona.idPersona}" class="btn btn-warning">Editar</a></td>
+								<td><a th:href="@{/eliminar/} + ${persona.idPersona}" class="btn btn-Danger">Eliminar</a></td>
 							</tr>
 						</tbody>
 					</table>
