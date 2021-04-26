@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,11 +15,10 @@
 <body>
 	<header th:replace="layout/plantilla :: header">
 	</header>
-
 	<section class="container">
 		<div class="card my-3">
 			<div class="card-header">
-			<a th:href="@{/agregar}" class="btn btn-outline-success">Crear Persona</a>
+			<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/agregar}" class="btn btn-outline-success">Crear Persona</a>
 			</div>
 			<div class="card-body">
 				<div class="card-text" th:if="${personas != null and !personas.empty}">
@@ -29,8 +29,8 @@
 								<th>Username</th>
 								<th>Fecha Nacimiento</th>
 								<th>Email</th>
-								<th></th>
-								<th></th>
+								<th sec:authorize="hasRole('ROLE_ADMIN')"></th>
+								<th sec:authorize="hasRole('ROLE_ADMIN')"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -40,8 +40,8 @@
 								<td th:text="${persona.username}"></td>
 								<td th:text="${persona.fecha_nac}"></td>
 								<td th:text="${persona.email}"></td>
-								<td><a th:href="@{/editar/} + ${persona.idPersona}" class="btn btn-warning">Editar</a></td>
-								<td><a th:href="@{/eliminar/} + ${persona.idPersona}" class="btn btn-Danger">Eliminar</a></td>
+								<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${persona.idPersona}" class="btn btn-warning">Editar</a></td>
+								<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar/} + ${persona.idPersona}" class="btn btn-danger">Eliminar</a></td>
 							</tr>
 						</tbody>
 					</table>
