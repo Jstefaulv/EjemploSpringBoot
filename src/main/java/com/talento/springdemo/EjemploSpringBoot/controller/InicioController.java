@@ -34,6 +34,8 @@ public class InicioController {
 			url="/usuario";
 		}else if(rol.contains("GUESS")) {
 			url="/invitado";
+		}else if(rol.isEmpty()) {
+			url="/otro";
 		}
 		
 		//var personas=new ArrayList();
@@ -65,4 +67,6 @@ public class InicioController {
 		servicio.eliminar(persona);
 		return "redirect:/";
 	}
+	
+	
 }
